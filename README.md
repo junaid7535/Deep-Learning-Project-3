@@ -1,56 +1,42 @@
-## Payment Fraud Detection using Deep Learning
+# **CREDIT CARD FRAUD DETECTION**
 
-### 🎯 Goal:
-###### Creating a DL project to detect any fraud in the online payments/transactions to secure the bank and users.
+# Aim
 
-###### The dataset comprises of total 6362620 transactions. This synthetic dataset is scaled down 1/4 of the original dataset. Remember that Transactions which are detected as fraud are cancelled.
+To build a Deep Learning model that is able to recognize fradulent credit card transactions so that customers are not charged for items they did not purchase
 
-### 🧾 Description:
-###### This project aims to develop a model capable of accurately detecting the fraudlent payments out the log provided. The dataset is used for training, validating and testing the models to achieve the most precise accuracy.
+# **Dataset**
 
-### What I had done:
-###### 1. **Data Preprocessing:**
-######   - Load and explore the dataset.
-######   - Exploratory Data Analysis.
-######   - Data Visualization
+The dataset used in this project is from https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud.
 
-###### 2. **Train-Test Split:**
-######   - Split the dataset into train, validate and test. (4072076 train examples, 1018020 validation examples, 1272524 test examples)
+# Approach
 
-###### 3. **Model Training (after data pipelining) :**
-######   - Single Neural Network
-######   - Multi-input Neural Network.
-######   - Recurrent Neural Network (LSTM Model).
+We will start with Exploratory Data Analysis and pre-processing(if required). Then we will try to build and train an ANN model and compare it with a baseline classifier model using appropriate metrics.
 
-###### 4. **Evaluation:**
-######   - Assess model performance on the test set.
-######   - Analyze and interpret the results.
+# Exploratory Data Analysis
 
-### Models used:
-###### Single-input Neural Network Model:
-###### Only one input layer is used to process the data. All features are combined into a single input layer (feature_layer), which is then fed into the sequential model. This approach is suitable when all features are of the same type and have a similar representation in the network.
-###### Multi-input Neural Network Model:
-###### Utilizes multiple input layers to handle different types of data. Each input layer processes a specific type of data or feature. The outputs of these input layers are then combined or merged before passing through the sequential model.This approach is beneficial when dealing with heterogeneous data types or when different features require different preprocessing steps.
-###### Recurrent Neural Network (Long short term memory Model):
-###### Particularly effective for tasks involving sequential data, where the model needs to remember information from previous time steps or tokens.
-
-### Libraries needed:
-###### pandas
-###### numpy
-###### matplotlib
-###### scikit-learn
-###### tensorflow
-###### keras
+The dataset contains 31 Features  and 284807 data points. The Class coloumn signifies whether a transaction is fake or real.
 
 
-### Conclusion: 
-###### After traing and testing model the accuracies we got are upto 99.93% (yet at first epochs, can do for more epochs but alot time is required)
+The dataset is highly imbalanced in favour of non-fradulent transactions.
+
+So we have to use either undersampling or oversampling techniques. I have used SMOTE Oversampling in this case.
+
+Due to the nature of Dataset accuracy is not a good metric for judging the perfomance of our model. Thus we should use precision,F1-score and Area under Precision-Recall Curve as the evaluation criteria.
+
+# The Model
+
+The ANN model consists of 3 Dense layers , 1 Dropout Layer and Batch Normalization.
+
+The optimizer used is Adam. The loss function is Sparse Categorical Cross Entropy. The activation function used for the first 2 layers is relu while softmax is used for the last layer.
 
 
-### Contributor:
-###### Name: Titiksha Agrawal
-###### linkedin: 
-https://www.linkedin.com/in/titiksha-agrawal-056004251/
-###### github:
-https://github.com/AgrawalTitiksha
-# Deep-Learning-Project-3
+# Observation
+
+Our baseline Logistic Regression model gave very poor results in both F1 and precision scores.
+
+
+By using an ANN model we got much better results.
+
+# Conclusion
+
+Neural Networks are far more flexible than traditional algorithms and thus can provide much accurate results.
